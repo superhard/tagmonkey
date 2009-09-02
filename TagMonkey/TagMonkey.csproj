@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B7739F9C-DC55-4EB3-AED2-6533DFC176E6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TagMonkey</RootNamespace>
+    <AssemblyName>TagMonkey</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>TagMonkey.Program</StartupObject>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ManifestCertificateThumbprint>5D2F4B35000CE95D901F81B58E671797593FE400</ManifestCertificateThumbprint>
+    <ManifestKeyFile>TagMonkey.pfx</ManifestKeyFile>
+    <SignManifests>true</SignManifests>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>TagMonkey.pfx</AssemblyOriginatorKeyFile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>ru-RU</TargetCulture>
+    <ProductName>TagMonkey</ProductName>
+    <PublisherName>Amsterdam Inc.</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.0.5.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="lastfm-sharp, Version=0.2.1.22242, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\lastfm-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\Albumz.cs" />
+    <Compile Include="Helpers\Controlz.cs" />
+    <Compile Include="Helpers\Internetz.cs" />
+    <Compile Include="Helpers\ITunez.cs" />
+    <Compile Include="Helpers\Maek.cs" />
+    <Compile Include="Local\EntryAddedEventArgs.cs" />
+    <Compile Include="Local\ArtworkCacheEntry.cs" />
+    <Compile Include="Local\EntryDeletedEventArgs.cs" />
+    <Compile Include="Net\WebClientEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\Feedback\IFeedbackService.cs" />
+    <Compile Include="Services\Feedback\TwitterFeedbackService.cs" />
+    <Compile Include="Services\GetArtwork\GoogleImagesGetArtworkService.cs" />
+    <Compile Include="Services\GetArtwork\IGetArtworkService.cs" />
+    <Compile Include="Services\GetLyrics\LyricWikiService.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\Lastfm\ILastfmService.cs" />
+    <Compile Include="Services\ServiceException.cs" />
+    <Compile Include="Services\ServiceUnavailableException.cs" />
+    <Compile Include="Local\ArtworkCache.cs" />
+    <Compile Include="Taggers\NamesFormatter.cs" />
+    <Compile Include="Taggers\TaggerFactory.cs" />
+    <Compile Include="UI\ArtworkCache\ArtworkCacheFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ArtworkCache\ArtworkCacheFrame.Designer.cs">
+      <DependentUpon>ArtworkCacheFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AutoTagger\AutoTaggerOptions.cs" />
+    <Compile Include="Taggers\TaggerKind.cs" />
+    <Compile Include="UI\CommonControls\ICanProposeButtons.cs" />
+    <Compile Include="UI\ExtraControls\AutoSelectTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ExtraControls\AutoSelectTextBox.Designer.cs">
+      <DependentUpon>AutoSelectTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonControls\BeforeWorkEventArgs.cs" />
+    <Compile Include="UI\CommonControls\IUserDetailsProvider.cs" />
+    <Compile Include="UI\CommonControls\LoginButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonControls\LoginButton.Designer.cs">
+      <DependentUpon>LoginButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonControls\ProcessButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonControls\ProcessButton.Designer.cs">
+      <DependentUpon>ProcessButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonControls\SourceSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonControls\SourceSelectorControl.Designer.cs">
+      <DependentUpon>SourceSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Authentication\IAuthService.cs" />
+    <Compile Include="Services\Authentication\AuthService.cs" />
+    <Compile Include="UI\ExtraControls\SelectOnCtrlATextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ExtraControls\SelectOnCtrlATextBox.Designer.cs">
+      <DependentUpon>SelectOnCtrlATextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ExtraControls\NoFlickeringListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ExtraControls\NoFlickeringListView.Designer.cs">
+      <DependentUpon>NoFlickeringListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Feedback\FeedbackControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Feedback\FeedbackControl.Designer.cs">
+      <DependentUpon>FeedbackControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms.cs" />
+    <Compile Include="UI\Lastfm\LastfmLoginControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Lastfm\LastfmLoginControl.Designer.cs">
+      <DependentUpon>LastfmLoginControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ExtraControls\AutoSizeListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ExtraControls\AutoSizeListView.Designer.cs">
+      <DependentUpon>AutoSizeListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Lastfm\TrackQueueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Lastfm\TrackQueueControl.Designer.cs">
+      <DependentUpon>TrackQueueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Lastfm\DeviceScannerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Lastfm\DeviceScannerControl.Designer.cs">
+      <DependentUpon>DeviceScannerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Authentication\AuthFailedEventArgs.cs" />
+    <Compile Include="Services\Authentication\AuthFailedException.cs" />
+    <Compile Include="Services\Lastfm\FakeLastfmService.cs" />
+    <Compile Include="Services\Lastfm\LastfmService.cs" />
+    <Compile Include="Services\ServiceFactory.cs" />
+    <Compile Include="UI\CommonControls\ILogger.cs" />
+    <Compile Include="Helpers\ITunesNotInstalledException.cs" />
+    <Compile Include="UI\Lastfm\LastfmFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Lastfm\LastfmFrame.Designer.cs">
+      <DependentUpon>LastfmFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\GetLyrics\IGetLyricsService.cs" />
+    <Compile Include="UI\AutoTagger\BoomboxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AutoTagger\BoomboxControl.Designer.cs">
+      <DependentUpon>BoomboxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonControls\LogEntryKind.cs" />
+    <Compile Include="UI\CommonControls\LoggerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonControls\LoggerControl.Designer.cs">
+      <DependentUpon>LoggerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonControls\ThreadSafeLogger.cs" />
+    <Compile Include="Taggers\ArtworkDownloader.cs" />
+    <Compile Include="Taggers\ArtworkTagger.cs" />
+    <Compile Include="Taggers\LyricsTagger.cs" />
+    <Compile Include="Taggers\AlbumSorter.cs" />
+    <Compile Include="Taggers\Tagger.cs" />
+    <Compile Include="UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AutoTagger\PlaylistSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AutoTagger\PlaylistSelectorControl.Designer.cs">
+      <DependentUpon>PlaylistSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\ArtworkCache\ArtworkCacheFrame.resx">
+      <DependentUpon>ArtworkCacheFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExtraControls\AutoSelectTextBox.resx">
+      <DependentUpon>AutoSelectTextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonControls\LoginButton.resx">
+      <DependentUpon>LoginButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonControls\ProcessButton.resx">
+      <DependentUpon>ProcessButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonControls\SourceSelectorControl.resx">
+      <DependentUpon>SourceSelectorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Feedback\FeedbackControl.resx">
+      <DependentUpon>FeedbackControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Lastfm\LastfmFrame.resx">
+      <DependentUpon>LastfmFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Lastfm\LastfmLoginControl.resx">
+      <DependentUpon>LastfmLoginControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Lastfm\TrackQueueControl.resx">
+      <DependentUpon>TrackQueueControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Lastfm\DeviceScannerControl.resx">
+      <DependentUpon>DeviceScannerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AutoTagger\BoomboxControl.resx">
+      <DependentUpon>BoomboxControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonControls\LoggerControl.resx">
+      <DependentUpon>LoggerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AutoTagger\PlaylistSelectorControl.resx">
+      <DependentUpon>PlaylistSelectorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AutoTagger\AutoTaggerFrame.resx">
+      <DependentUpon>AutoTaggerFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AutoTagger\AutoTaggerOptionsControl.resx">
+      <DependentUpon>AutoTaggerOptionsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UI\AutoTagger\AutoTaggerFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AutoTagger\AutoTaggerFrame.Designer.cs">
+      <DependentUpon>AutoTaggerFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AutoTagger\AutoTaggerOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AutoTagger\AutoTaggerOptionsControl.Designer.cs">
+      <DependentUpon>AutoTaggerOptionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LyricWikiSOAP\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="iTunesLib">
+      <Guid>{9E93C96F-CF0D-43F6-8BA8-B807A3370712}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>11</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Web References\LyricWikiSOAP\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LyricWikiSOAP\server.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://lyricwiki.org/server.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LyricWikiSOAP\</RelPath>
+      <UpdateFromURL>http://lyricwiki.org/server.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>LyricWikiUrl</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.ico" />
+    <None Include="TagMonkey.pfx" />
+    <None Include="Web References\LyricWikiSOAP\LyricsResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LyricWikiSOAP\SongResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LyricWikiSOAP\SOTDResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="TagMonkey.XmlSerializers">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="lib\src\GAPI\Gapi.csproj">
+      <Project>{4E43C62A-4F88-45B6-A420-ECE29917822C}</Project>
+      <Name>Gapi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

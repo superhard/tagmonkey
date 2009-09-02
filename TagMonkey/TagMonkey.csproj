@@ -67,6 +67,10 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GAPI, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\GAPI.dll</HintPath>
+    </Reference>
     <Reference Include="lastfm-sharp, Version=0.2.1.22242, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\lastfm-sharp.dll</HintPath>
@@ -410,12 +414,6 @@
       <PublishState>Exclude</PublishState>
       <FileType>Assembly</FileType>
     </PublishFile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="lib\src\GAPI\Gapi.csproj">
-      <Project>{4E43C62A-4F88-45B6-A420-ECE29917822C}</Project>
-      <Name>Gapi</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

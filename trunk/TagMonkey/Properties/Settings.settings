@@ -8,5 +8,11 @@
     <Setting Name="LyricWikiParserRegex" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;div class=\'lyricbox\' &gt;(?&lt;LYRICS&gt;.*)&lt;!--</Value>
     </Setting>
+    <Setting Name="LastfmApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">a65154a4c8dadfea92f93c0a7c94492f</Value>
+    </Setting>
+    <Setting Name="LastfmApiSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10c98fc8a17e17085c8c24d54fa7c304</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -18,20 +18,8 @@ namespace TagMonkey.Taggers {
 
 		protected override bool GatherRequiredInfo ()
 		{
-			string album = CurrentTrack.Album;
-
-			string artist;
-			string loggerSubject;
-
-			if (CurrentTrack.Compilation) {
-				artist = string.Empty;
-				loggerSubject = "Разные исполнители";
-			} else {
-				artist = CurrentTrack.Artist;
-				loggerSubject = artist;
-			}
-			loggerSubject += " — " + album;
-
+			string album = Stringz.NotNull (CurrentTrack.Album);
+			string artist = (CurrentTrack.Compilation) ? string.Empty : Stringz.NotNull (CurrentTrack.Artist);
 			string albumKey = Albumz.GetUniqueKey (CurrentTrack);
 
 			// check cache
@@ -42,10 +30,10 @@ namespace TagMonkey.Taggers {
 			IGetArtworkService getArtwork = ServiceFactory.GetService<IGetArtworkService> ();
 			Image img = getArtwork.GetArtwork (artist, album, CurrentTrack.Year);
 			if (img == null) {
-				Log (loggerSubject, LogEntryKind.Warning, "Не удалось найти обложку");
+				LogAlbum (LogEntryKind.Warning, "Не удалось найти обложку");
 			} else {
 				using (img) ArtworkCache.Store (artist, album, img);
-				Log (loggerSubject, LogEntryKind.Information, "Обложка загружена из интернета");
+				LogAlbum (LogEntryKind.Information, "Обложка загружена из интернета");
 			}
 
 			CacheServiceResponse (albumKey, img != null);

@@ -48,7 +48,7 @@ namespace TagMonkey.Taggers {
 			} catch (ServiceUnavailableException) {
 				throw;
 			}  catch (ServiceException sex) {
-				Log (string.Empty, LogEntryKind.Error, sex.Message);
+				Log (FriendlyName, LogEntryKind.Error, sex.Message);
 			} catch (COMException) {
 				Log (LogEntryKind.Error, "Не удалось осуществить запись в файл");
 			} finally {
@@ -64,6 +64,14 @@ namespace TagMonkey.Taggers {
 		protected void Log (string subject, LogEntryKind kind, string msg)
 		{
 			logger.AddLogEntry (subject, kind, msg);
+		}
+
+		protected void LogAlbum (LogEntryKind kind, string msg)
+		{
+			string subject = (CurrentTrack.Compilation) ? "Разные исполнители" : CurrentTrack.Artist;
+			subject += " — " + CurrentTrack.Album + " (альбом)";
+
+			Log (subject, kind, msg);
 		}
 	}
 }

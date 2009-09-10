@@ -105,15 +105,17 @@ namespace TagMonkey.UI.Lastfm {
 
 				string loggerText = tr.Artist + " — " + tr.Name; //FIXME:DUEP
 				try {
+					int addSeconds = 0; // many simultaneous scrobbles are treated as the same
 					while (ITunez.CrashSafe (() => tr.PlayedCount > 0)) {
 						try {
-							ITunez.CrashSafe (() => lastfm.Scrobble (tr));
+							ITunez.CrashSafe (() => lastfm.Scrobble (tr, addSeconds));
 						} catch (LastfmLib.Scrobbling.ScrobblingException ex) {
 							logger.AddLogEntry (loggerText, LogEntryKind.Error, ex.Message);
-							continue;
+							continue; //TODO: break if too many failures
 						}
 
 						ITunez.CrashSafe (() => tr.PlayedCount --);
+						addSeconds++;
 
 						logger.AddLogEntry (loggerText, LogEntryKind.Information, "Готово");
 						logger.SetProgressPercentage ((int) ((float) (i+1) / (float) tx.Count * 100.0));

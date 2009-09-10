@@ -8,18 +8,17 @@ using Lastfm.Services;
 
 using TagMonkey;
 using TagMonkey.Services.Authentication;
+using TagMonkey.Properties;
 
 namespace TagMonkey.Services.Lastfm {
 	class LastfmService : AuthService, ILastfmService {
-		private const string ApiKey = "a65154a4c8dadfea92f93c0a7c94492f";
-		private const string ApiSecret = "10c98fc8a17e17085c8c24d54fa7c304";
 
 		private Session session;
 		private Connection connection;
 
 		protected override void DoLogin (string login, string password)
 		{
-			session = new Session (ApiKey, ApiSecret);
+			session = new Session (Settings.Default.LastfmApiKey, Settings.Default.LastfmApiSecret);
 			try {
 				session.Authenticate (login, Utilities.MD5 (password));
 			} catch (global::Lastfm.Services.ServiceException sex) {
@@ -50,13 +49,17 @@ namespace TagMonkey.Services.Lastfm {
 			}
 		}
 
+		public void Scrobble (IITFileOrCDTrack track)
+		{
+			Scrobble (track, 0);
+		}
 
-		public virtual void Scrobble (IITFileOrCDTrack track)
+		public virtual void Scrobble (IITFileOrCDTrack track, int addSeconds)
 		{
 			Maek.Sure (IsAuthenticated, "Сначала надо войти!");
 			Maek.Sure (connection != null, "Пользователь не вошёл, объект Connection не создан");
 
-			Entry e = new Entry (track.Artist, track.Name, track.PlayedDate, PlaybackSource.User,
+			Entry e = new Entry (track.Artist, track.Name, track.PlayedDate.AddSeconds (addSeconds), PlaybackSource.User,
 				new TimeSpan (0, 0, track.Duration), ScrobbleMode.Played, track.Album, track.TrackNumber, string.Empty);
 
 			try {

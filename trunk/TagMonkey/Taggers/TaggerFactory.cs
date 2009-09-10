@@ -33,6 +33,9 @@ namespace TagMonkey.Taggers {
 			case TaggerKind.NamesFormatter:
 				instance = new NamesFormatter (logger);
 				break;
+			case TaggerKind.GenreTagger:
+				instance = new GenreTagger (logger);
+				break;
 			default:
 				throw new NotImplementedException ();
 			}

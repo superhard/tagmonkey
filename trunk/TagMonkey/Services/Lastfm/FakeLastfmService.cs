@@ -30,7 +30,7 @@ namespace TagMonkey.Services.Lastfm {
 			get { return ok; }
 		}
 
-		public override void Scrobble (iTunesLib.IITFileOrCDTrack track)
+		public override void Scrobble (iTunesLib.IITFileOrCDTrack track, int seconds)
 		{
 			Thread.Sleep (2000);
 

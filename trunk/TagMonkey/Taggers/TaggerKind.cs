@@ -6,6 +6,7 @@ namespace TagMonkey.Taggers {
 		ArtworkDownloader,
 		ArtworkTagger,
 		NamesFormatter,
-		LyricsTagger
+		LyricsTagger,
+		GenreTagger
 	}
 }

@@ -12,11 +12,14 @@ namespace TagMonkey.Taggers {
 
 		protected override bool GatherRequiredInfo ()
 		{
-			int year = CurrentTrack.Year;
-			string album = CurrentTrack.Album;
-			string sortAlbum = CurrentTrack.SortAlbum;
+			if (string.IsNullOrEmpty (CurrentTrack.SortAlbum))
+				CurrentTrack.UpdateInfoFromFile (); //FIXME:slow but helps to fix some mistakes
 
-			if (sortAlbum == null) {
+			int year = CurrentTrack.Year;
+			string album = Stringz.NotNull (CurrentTrack.Album);
+			string sortAlbum = Stringz.NotNull (CurrentTrack.SortAlbum);
+
+			if (string.IsNullOrEmpty (sortAlbum)) {
 				if (year == 0) {
 					Log (LogEntryKind.Warning, "Пропущен: не указан год для сортировки");
 					return false;
@@ -61,6 +64,9 @@ namespace TagMonkey.Taggers {
 		protected override void WriteChangesToFile ()
 		{
 			CurrentTrack.SortAlbum = newSortAlbum;
+			if (string.IsNullOrEmpty (CurrentTrack.SortAlbum))
+				CurrentTrack.UpdateInfoFromFile ();
+
 			Log (LogEntryKind.Information, "Теперь сортируется по " + newSortAlbum.Substring (0, 4) + " году");
 		}
 	}

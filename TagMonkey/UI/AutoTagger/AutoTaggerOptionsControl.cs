@@ -25,25 +25,29 @@ namespace TagMonkey.UI.AutoTagger {
 			});
 
 			formatNamesCheckBox.CheckedChanged += optionsChanged;
-			searchForLyricsCheckBox.CheckedChanged += optionsChanged;
+			getLyricsCheckBox.CheckedChanged += optionsChanged;
 			onlyMissingLyricsCheckBox.CheckedChanged += optionsChanged;
 			sortAlbumsByYearCheckBox.CheckedChanged += optionsChanged;
-			downloadArtworkCheckBox.CheckedChanged += optionsChanged;
+			getArtworkForCacheCheckBox.CheckedChanged += optionsChanged;
 			setArtworkFromCacheCheckBox.CheckedChanged += optionsChanged;
 			onlyMissingArtworkCheckBox.CheckedChanged += optionsChanged;
+			getGenresCheckBox.CheckedChanged += optionsChanged;
 			this.Load += optionsChanged;
 
-			searchForLyricsCheckBox.CheckedChanged += delegate {
-				onlyMissingLyricsCheckBox.Enabled = searchForLyricsCheckBox.Checked;
+			getLyricsCheckBox.CheckedChanged += delegate {
+				onlyMissingLyricsCheckBox.Enabled = getLyricsCheckBox.Checked;
+			};
+			getGenresCheckBox.CheckedChanged += delegate {
+				onlyMissingGenresCheckBox.Enabled = getGenresCheckBox.Enabled;
 			};
 
-			downloadArtworkCheckBox.CheckedChanged += delegate {
+			getArtworkForCacheCheckBox.CheckedChanged += delegate {
 				onlyMissingArtworkCheckBox.Enabled =
-					setArtworkFromCacheCheckBox.Checked || downloadArtworkCheckBox.Checked; 
+					setArtworkFromCacheCheckBox.Checked || getArtworkForCacheCheckBox.Checked; 
 			};
 			setArtworkFromCacheCheckBox.CheckedChanged += delegate {
 				onlyMissingArtworkCheckBox.Enabled =
-					setArtworkFromCacheCheckBox.Checked || downloadArtworkCheckBox.Checked;
+					setArtworkFromCacheCheckBox.Checked || getArtworkForCacheCheckBox.Checked;
 			};
 		}
 
@@ -74,16 +78,19 @@ namespace TagMonkey.UI.AutoTagger {
 				SetBold (formatNamesCheckBox, value);
 				break;
 			case TaggerKind.LyricsTagger:
-				SetBold (searchForLyricsCheckBox, value);
+				SetBold (getLyricsCheckBox, value);
 				break;
 			case TaggerKind.AlbumsSorter:
 				SetBold (sortAlbumsByYearCheckBox, value);
 				break;
 			case TaggerKind.ArtworkDownloader:
-				SetBold (downloadArtworkCheckBox, value);
+				SetBold (getArtworkForCacheCheckBox, value);
 				break;
 			case TaggerKind.ArtworkTagger:
 				SetBold (setArtworkFromCacheCheckBox, value);
+				break;
+			case TaggerKind.GenreTagger:
+				SetBold (getGenresCheckBox, value);
 				break;
 			default:
 				throw new NotImplementedException ();
@@ -102,16 +109,19 @@ namespace TagMonkey.UI.AutoTagger {
 					taggers.Add (TaggerKind.NamesFormatter);
 				if (sortAlbumsByYearCheckBox.Checked)
 					taggers.Add (TaggerKind.AlbumsSorter);
-				if (searchForLyricsCheckBox.Checked)
+				if (getLyricsCheckBox.Checked)
 					taggers.Add (TaggerKind.LyricsTagger);
-				if (downloadArtworkCheckBox.Checked)
+				if (getArtworkForCacheCheckBox.Checked)
 					taggers.Add (TaggerKind.ArtworkDownloader);
 				if (setArtworkFromCacheCheckBox.Checked)
 					taggers.Add (TaggerKind.ArtworkTagger);
+				if (getGenresCheckBox.Checked)
+					taggers.Add (TaggerKind.GenreTagger);
 			
 				return new AutoTaggerOptions (taggers.AsReadOnly (),
 					onlyMissingLyricsCheckBox.Checked,
-					onlyMissingArtworkCheckBox.Checked);
+					onlyMissingArtworkCheckBox.Checked,
+					onlyMissingGenresCheckBox.Checked);
 			}
 		}
 

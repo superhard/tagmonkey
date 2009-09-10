@@ -16,15 +16,14 @@ namespace TagMonkey.Taggers {
 
 		protected override bool GatherRequiredInfo ()
 		{
-			string artist = (CurrentTrack.Compilation) ? string.Empty : CurrentTrack.Artist;
-			ArtworkCacheEntry? entry = ArtworkCache.FindEntry (artist, CurrentTrack.Album);
+			string artist = (CurrentTrack.Compilation) ? string.Empty : Stringz.NotNull (CurrentTrack.Artist);
+			ArtworkCacheEntry? entry = ArtworkCache.FindEntry (artist, Stringz.NotNull (CurrentTrack.Album));
 			if (!entry.HasValue) {
 				string albumKey = Albumz.GetUniqueKey (CurrentTrack);
 				if (reportedMissingAlbums.Contains (albumKey))
 					return false;
 
-				Log (string.Format ("{0} — {1} (альбом)", artist, CurrentTrack.Album), LogEntryKind.Warning,
-					"Среди скачанных обложек не нашлось подходящей");
+				LogAlbum (LogEntryKind.Warning, "Среди скачанных обложек не нашлось подходящей");
 
 				reportedMissingAlbums.Add (albumKey);
 				return false;

@@ -4,6 +4,7 @@ using System.Text;
 
 using TagMonkey.Services.Feedback;
 using TagMonkey.Services.GetArtwork;
+using TagMonkey.Services.GetGenres;
 using TagMonkey.Services.GetLyrics;
 using TagMonkey.Services.Lastfm;
 
@@ -17,12 +18,13 @@ namespace TagMonkey.Services {
 		static ServiceFactory ()
 		{
 			implTable = new Dictionary<Type, Type> ();
-			implTable.Add (typeof (IGetLyricsService), typeof (LyricWikiService));
 			implTable.Add (typeof (IGetArtworkService), typeof (GoogleImagesGetArtworkService));
+			implTable.Add (typeof (IGetGenresService), typeof (CommonGetGenresService));
+			implTable.Add (typeof (IGetLyricsService), typeof (LyricWikiService));
+			implTable.Add (typeof (IFeedbackService), typeof (TwitterFeedbackService));
 			implTable.Add (typeof (ILastfmService), (UseFakeLastfm)
 				? typeof (FakeLastfmService)
 				: typeof (LastfmService));
-			implTable.Add (typeof (IFeedbackService), typeof (TwitterFeedbackService));
 
 			instances = new Dictionary<Type, IService> ();
 		}

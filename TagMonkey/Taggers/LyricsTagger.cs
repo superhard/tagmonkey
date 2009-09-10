@@ -16,7 +16,7 @@ namespace TagMonkey.Taggers {
 		protected override bool GatherRequiredInfo ()
 		{
 			IGetLyricsService getLyrics = ServiceFactory.GetService<IGetLyricsService> ();
-			downloadedLyrics = getLyrics.GetLyrics (CurrentTrack.Artist, CurrentTrack.Name);
+			downloadedLyrics = getLyrics.GetLyrics (Stringz.NotNull (CurrentTrack.Artist), Stringz.NotNull (CurrentTrack.Name));
 
 			if (downloadedLyrics == null) {
 				Log (LogEntryKind.Warning, "Текст песни отсутствует в базе данных");

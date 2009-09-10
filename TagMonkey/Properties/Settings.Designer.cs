@@ -44,5 +44,29 @@ namespace TagMonkey.Properties {
                 this["LyricWikiParserRegex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("a65154a4c8dadfea92f93c0a7c94492f")]
+        public string LastfmApiKey {
+            get {
+                return ((string)(this["LastfmApiKey"]));
+            }
+            set {
+                this["LastfmApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10c98fc8a17e17085c8c24d54fa7c304")]
+        public string LastfmApiSecret {
+            get {
+                return ((string)(this["LastfmApiSecret"]));
+            }
+            set {
+                this["LastfmApiSecret"] = value;
+            }
+        }
     }
 }

@@ -13,6 +13,8 @@ using TagMonkey.UI.CommonControls;
 namespace TagMonkey.UI.AutoTagger {
 	partial class AutoTaggerFrame : UserControl, ICanProposeButtons {
 
+		private delegate bool ActionCheck (IITFileOrCDTrack track);
+
 		public event EventHandler ProposedButtonsChanged;
 
 		private ILogger logger = null;
@@ -80,28 +82,11 @@ namespace TagMonkey.UI.AutoTagger {
 					continue;
 				}
 
-				Action<IITFileOrCDTrack> action;
-				if (options.OnlyMissingLyrics && kind == TaggerKind.LyricsTagger) {
-
-					action = new Action<IITFileOrCDTrack> (t => {
-						if (string.IsNullOrEmpty (ITunez.CrashSafe (() => t.Lyrics)))
-							tagger.ProcessTrack (t);
-					});
-
-				} else if (options.OnlyMissingArtwork
-					&& (kind == TaggerKind.ArtworkDownloader || kind == TaggerKind.ArtworkTagger)) {
-
-					action = new Action<IITFileOrCDTrack> (t => {
-						if (ITunez.CrashSafe (() => t.Artwork.Count == 0))
-							tagger.ProcessTrack (t);
-					});
-
-				} else {
-					action = new Action<IITFileOrCDTrack> (tagger.ProcessTrack);
-				}
+				ActionCheck check = GetActionCheck (kind, options);
+				Action<IITFileOrCDTrack> action = new Action<IITFileOrCDTrack> (tagger.ProcessTrack);
 
 				Controlz.ThreadSafe (() => taggerOptions.SetBoldFeature (kind, true));
-				ApplyAction (playlist, action);
+				ApplyAction (playlist, check, action);
 				Controlz.ThreadSafe (() => taggerOptions.SetBoldFeature (kind, false));
 
 				if (taggerWorker.CancellationPending) {
@@ -144,7 +129,20 @@ namespace TagMonkey.UI.AutoTagger {
 				&& taggerOptions.Options.AnyChangedRequested;
 		}
 
-		void ApplyAction (IITUserPlaylist pl, Action<IITFileOrCDTrack> action)
+		ActionCheck GetActionCheck (TaggerKind taggerKind, AutoTaggerOptions options)
+		{
+			if (options.OnlyMissingArtwork && (taggerKind == TaggerKind.ArtworkDownloader
+				|| taggerKind == TaggerKind.ArtworkTagger))
+				return (t => t.Artwork.Count == 0);
+			else if (options.OnlyMissingGenre && taggerKind == TaggerKind.GenreTagger)
+				return (t => string.IsNullOrEmpty (t.Genre));
+			else if (options.OnlyMissingLyrics && taggerKind == TaggerKind.LyricsTagger)
+				return (t => string.IsNullOrEmpty (t.Lyrics));
+			else
+				return (t => true);
+		}
+
+		void ApplyAction (IITUserPlaylist pl, ActionCheck check, Action<IITFileOrCDTrack> action)
 		{
 			int n = ITunez.CrashSafe (() => pl.Tracks.Count);
 			for (int i = 1; i <= n; i++) {
@@ -161,7 +159,8 @@ namespace TagMonkey.UI.AutoTagger {
 					return;
 
 				// do action!
-				action (track);
+				if (ITunez.CrashSafe (() => check (track)))
+					action (track); // taggers are itunes-safe
 
 				taggerWorker.ReportProgress ((int) ((float) i / (float) n * 100.0));
 

@@ -19,9 +19,11 @@ namespace TagMonkey {
 
 		public static string GetUniqueKey (IITFileOrCDTrack track)
 		{
-			string key = null;
-			ITunez.CrashSafe (() => key = GetUniqueKey (track.Artist, track.Album)); //TODO: use generics
-			return key;
+			string artist = (track.Compilation) ? string.Empty : track.Artist;
+			if (artist == null)
+				artist = string.Empty;
+			string album = (track.Album == null) ? string.Empty : track.Album; //FIXME: extract denullify
+			return ITunez.CrashSafe (() => GetUniqueKey (artist, album));
 		}
 	}
 

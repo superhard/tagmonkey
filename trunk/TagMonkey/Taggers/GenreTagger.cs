@@ -43,6 +43,7 @@ namespace TagMonkey.Taggers {
 		protected override void WriteChangesToFile ()
 		{
 			string genre = genreCache [Albumz.GetUniqueKey (CurrentTrack)];
+			CurrentTrack.Genre = "";
 			CurrentTrack.Genre = genre;
 			Log (LogEntryKind.Information, string.Format ("Жанр \"{0}\" записан в теги файла", genre));
 		}

@@ -25,19 +25,20 @@ namespace TagMonkey.Services.GetGenres {
 
 		});
 		private static readonly List<string> indescriptiveTags = new List<string> (new string [] {
-			"albums i own", "american", "awesome", "british",
+			"albums i own", "acoustic", "albums", "american", "awesome", "british",
 			"beautiful", "canadian", "chill", "classic", "classic rock", "cool", "cover", 
 			"dead man radio", "deutch", "easy listening", "electro",
 			"electronic", "electronica", "emusic",
 			"favorite", "favorites", "favourite", "favourites", "female", "female vocalist", 
 			"heard on pandora", "hip hop", "guitar", "indie", "instrumental", "jpop", "love", "pop",
-			"male vocalists", "new age", "oldies", "piano", "romantic",
-			"rock", "sad", "seen live", "sexy", "singer-songwriter",
+			"post hardcore", "post punk", "post rock",
+			"male vocalists", "new age", "oldies", "piano", "relax", "romantic",
+			"rock", "sad", "seen live", "sexy", "singer-songwriter", "vocal",
 			"00s", "10s", "20s", "30s", "40s", "50s", "60s", "70s", "80s", "90s", "2000s", 
 		});
 
 		private static readonly string [] indescriptiveTagWords = new string [] {
-			"like", "love", "fav", "my", "i ", "best", "alternative"
+			"like", "love", "fav", "my", "i ", "best", "alternative", "top", "alb", " of", "records"
 		};
 
 
@@ -70,6 +71,9 @@ namespace TagMonkey.Services.GetGenres {
 
 		static bool IsDescriptive (string tag)
 		{
+			if (char.IsDigit (tag [0]))
+				return false;
+
 			if (descriptiveTags.Contains (tag))
 				return true;
 

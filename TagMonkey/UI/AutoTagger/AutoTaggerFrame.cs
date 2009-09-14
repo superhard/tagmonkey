@@ -77,17 +77,28 @@ namespace TagMonkey.UI.AutoTagger {
 				}
 
 				Tagger tagger = TaggerFactory.GetTagger (kind);
-				if (tagger.RequiresWebConnection && !Internetz.PingPong ()) {
-					logger.AddLogEntry (tagger.FriendlyName, LogEntryKind.Error, "Необходимо подключение к интернету");
-					continue;
-				}
 
 				ActionCheck check = GetActionCheck (kind, options);
 				Action<IITFileOrCDTrack> action = new Action<IITFileOrCDTrack> (tagger.ProcessTrack);
 
 				Controlz.ThreadSafe (() => taggerOptions.SetBoldFeature (kind, true));
-				ApplyAction (playlist, check, action);
-				Controlz.ThreadSafe (() => taggerOptions.SetBoldFeature (kind, false));
+				try {
+					ApplyAction (playlist, check, action);
+				} catch (Services.ServiceUnavailableException) {
+					if (tagger.RequiresWebConnection) {
+						string msg;
+						msg = Internetz.PingPong ()
+							? "Сервис недоступен"
+							: "Необходимо подключение к интернету";
+
+						logger.AddLogEntry (tagger.FriendlyName, LogEntryKind.Error, msg);
+						continue; // since it requires connection, skip the rest of playlist
+					} else {
+						logger.AddLogEntry (tagger.FriendlyName, LogEntryKind.Error, "Сервис недоступен");
+					}
+				} finally {
+					Controlz.ThreadSafe (() => taggerOptions.SetBoldFeature (kind, false));
+				}
 
 				if (taggerWorker.CancellationPending) {
 					e.Cancel = true;

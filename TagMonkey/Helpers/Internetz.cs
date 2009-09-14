@@ -11,7 +11,12 @@ namespace TagMonkey {
 			Ping ping = new Ping ();
 			int phailed = 0;
 			for (int i = 0; i < pingList.Length; i++) {
-				PingReply reply = ping.Send (pingList [i], 5000);
+				PingReply reply;
+				try {
+					reply = ping.Send (pingList [i], 5000);
+				} catch (PingException) {
+					return false;
+				}
 				if (reply.Status == IPStatus.Success)
 					return true;
 				else

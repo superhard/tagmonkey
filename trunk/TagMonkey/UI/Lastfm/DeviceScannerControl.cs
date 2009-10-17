@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 
 using iTunesLib;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 using TagMonkey.Properties;
 
 namespace TagMonkey.UI.Lastfm {
@@ -40,7 +40,7 @@ namespace TagMonkey.UI.Lastfm {
 			e.CanProceed = false;
 			trackList.Clear ();
 
-			IITIPodSource src = deviceSelector.SelectedSource as IITIPodSource;
+			IITIPodSource src = deviceSelector.SelectedIPod;
 
 			if (src == null)
 				return;
@@ -83,7 +83,7 @@ namespace TagMonkey.UI.Lastfm {
 					return;
 				}
 
-				if (IsScrobblable(track))
+				if (track != null && IsScrobblable(track))
 					Controlz.ThreadSafe (() => trackList.AddTrack (track));
 			}
 		}
@@ -177,6 +177,10 @@ namespace TagMonkey.UI.Lastfm {
 
 		public bool HasTracksToScrobble {
 			get { return trackList.SelectedItemsCount > 0; }
+		}
+
+		public bool IsBusy {
+			get { return scanButton.IsBusy; }
 		}
 	}
 }

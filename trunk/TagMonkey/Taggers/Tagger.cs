@@ -5,7 +5,7 @@ using System.Text;
 
 using iTunesLib;
 using TagMonkey.Services;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	abstract class Tagger {

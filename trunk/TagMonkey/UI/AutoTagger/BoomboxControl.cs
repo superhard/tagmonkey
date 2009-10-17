@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.UI.AutoTagger {
 	partial class BoomboxControl : UserControl, ICanProposeButtons {

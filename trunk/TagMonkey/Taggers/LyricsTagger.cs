@@ -4,7 +4,7 @@ using System.Text;
 
 using TagMonkey.Services;
 using TagMonkey.Services.GetLyrics;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	class LyricsTagger : Tagger {

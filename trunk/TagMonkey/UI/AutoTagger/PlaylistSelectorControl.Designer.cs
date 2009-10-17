@@ -26,14 +26,14 @@
 		private void InitializeComponent ()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox ();
-			this.deviceSelector = new TagMonkey.UI.CommonControls.SourceSelectorControl ();
 			this.playlistComboBox = new System.Windows.Forms.ComboBox ();
+			this.sourceSelector = new TagMonkey.UI.Common.SourceSelectorControl ();
 			this.groupBox1.SuspendLayout ();
 			this.SuspendLayout ();
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add (this.deviceSelector);
+			this.groupBox1.Controls.Add (this.sourceSelector);
 			this.groupBox1.Controls.Add (this.playlistComboBox);
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point (0, 0);
@@ -42,13 +42,6 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "В&ыберите источник:";
-			// 
-			// deviceSelector
-			// 
-			this.deviceSelector.Location = new System.Drawing.Point (6, 15);
-			this.deviceSelector.Name = "deviceSelector";
-			this.deviceSelector.Size = new System.Drawing.Size (211, 27);
-			this.deviceSelector.TabIndex = 0;
 			// 
 			// playlistComboBox
 			// 
@@ -61,6 +54,13 @@
 			this.playlistComboBox.Name = "playlistComboBox";
 			this.playlistComboBox.Size = new System.Drawing.Size (221, 21);
 			this.playlistComboBox.TabIndex = 1;
+			// 
+			// sourceSelector
+			// 
+			this.sourceSelector.Location = new System.Drawing.Point (6, 15);
+			this.sourceSelector.Name = "sourceSelector";
+			this.sourceSelector.Size = new System.Drawing.Size (211, 27);
+			this.sourceSelector.TabIndex = 0;
 			// 
 			// PlaylistSelectorControl
 			// 
@@ -78,7 +78,7 @@
 
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.ComboBox playlistComboBox;
-		private TagMonkey.UI.CommonControls.SourceSelectorControl deviceSelector;
+		private TagMonkey.UI.Common.SourceSelectorControl sourceSelector;
 
 	}
 }

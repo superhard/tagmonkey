@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 using iTunesLib;
 

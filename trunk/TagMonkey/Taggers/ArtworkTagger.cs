@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using TagMonkey.Local;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	class ArtworkTagger : Tagger {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	class NamesFormatter : Tagger {

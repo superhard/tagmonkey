@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	static class TaggerFactory {

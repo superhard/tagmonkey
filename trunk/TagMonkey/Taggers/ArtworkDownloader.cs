@@ -6,7 +6,7 @@ using iTunesLib;
 using TagMonkey.Local;
 using TagMonkey.Services;
 using TagMonkey.Services.GetArtwork;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	class ArtworkDownloader : Tagger {

@@ -28,8 +28,8 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox ();
 			this.splitContainer = new System.Windows.Forms.SplitContainer ();
 			this.trackQueue = new TagMonkey.UI.Lastfm.DeviceScannerControl ();
-			this.loggerControl = new TagMonkey.UI.CommonControls.LoggerControl ();
-			this.scrobbleButton = new TagMonkey.UI.CommonControls.ProcessButton ();
+			this.loggerControl = new TagMonkey.UI.Common.LoggerControl ();
+			this.scrobbleButton = new TagMonkey.UI.Common.ProcessButton ();
 			this.loginControl = new TagMonkey.UI.Lastfm.LastfmLoginControl ();
 			((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit ();
 			this.splitContainer.Panel1.SuspendLayout ();
@@ -97,7 +97,7 @@
 			this.scrobbleButton.TabIndex = 1;
 			this.scrobbleButton.DoWork += new System.ComponentModel.DoWorkEventHandler (this.scrobbleButton_DoWork);
 			this.scrobbleButton.AfterWork += new System.ComponentModel.RunWorkerCompletedEventHandler (this.scrobbleButton_AfterWork);
-			this.scrobbleButton.BeforeWork += new System.EventHandler<TagMonkey.UI.CommonControls.BeforeWorkEventArgs> (this.scrobbleButton_BeforeWork);
+			this.scrobbleButton.BeforeWork += new System.EventHandler<TagMonkey.UI.Common.BeforeWorkEventArgs> (this.scrobbleButton_BeforeWork);
 			// 
 			// loginControl
 			// 
@@ -134,8 +134,8 @@
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.SplitContainer splitContainer;
 		private DeviceScannerControl trackQueue;
-		private TagMonkey.UI.CommonControls.LoggerControl loggerControl;
-		private TagMonkey.UI.CommonControls.ProcessButton scrobbleButton;
+		private TagMonkey.UI.Common.LoggerControl loggerControl;
+		private TagMonkey.UI.Common.ProcessButton scrobbleButton;
 
 
 	}

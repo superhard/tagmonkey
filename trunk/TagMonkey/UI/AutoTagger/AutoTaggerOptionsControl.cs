@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 using TagMonkey.Taggers;
 using TagMonkey.UI;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 using TagMonkey.UI.Feedback;
 
 namespace TagMonkey.UI.AutoTagger {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using TagMonkey.Services;
 using TagMonkey.Services.GetGenres;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.Taggers {
 	class GenreTagger : Tagger {

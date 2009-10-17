@@ -10,14 +10,7 @@ namespace TagMonkey.Services.GetLyrics {
 		public string GetLyrics (string artist, string title)
 		{
 			try {
-				XmlTextReader xml = new XmlTextReader (GetApiUrl (artist, title).ToString ());
-				if (xml.ReadToFollowing ("url")) {
-					string url = xml.ReadString ();
-					if (!url.Contains ("action=edit")) // no such page
-						return ParsePage (url);
-				}
-
-				return null;
+				return GetSongLyrics (artist, title);
 
 			} catch (WebException wex) {
 				if (wex.Status == WebExceptionStatus.ProtocolError && wex.Message.Contains ("404"))
@@ -25,36 +18,82 @@ namespace TagMonkey.Services.GetLyrics {
 
 				throw new ServiceUnavailableException (wex);
 			} catch (Exception ex) {
-				throw new ServiceException ("Неизвестная ошибка.", ex);
+				throw new ServiceException ("Неизвестная ошибка: " + ex.Message, ex);
 			}
 		}
 
-		string ParsePage (string url)
+		string GetSongLyrics (string artist, string title)
 		{
-			using (WebClient wc = new WebClient ()) {
-				string html = wc.DownloadString (url);
-				if (string.IsNullOrEmpty (html))
-					return null;
+			string query = artist + " " + title;
+			string pageName = null;
+			using (XmlTextReader xml = new XmlTextReader (GetSearchUrl (artist + " " + title))) {
+				do {
+					pageName = null;
+					if (!xml.ReadToFollowing ("p"))
+						break;
 
-				Regex extractor = new Regex (Settings.Default.LyricWikiParserRegex);
-				Match match = extractor.Match (html);
-				if (match.Success) {
-					string capturedLyrics = match.Groups ["LYRICS"].Value
-						.Replace ("<br />", Environment.NewLine);
-					if (!capturedLyrics.Contains (Settings.Default.MediaWikiInstrumentalCategory))
-						return capturedLyrics;
-				}
+					pageName = xml.GetAttribute ("title");
+				} while (!pageName.Contains (":") || pageName.EndsWith (")"));
+			}
 
+			if (pageName == null || !EnsureCorrectPage (pageName, artist, title))
 				return null;
+
+			using (XmlTextReader xml = new XmlTextReader (GetContentUrl (pageName))) {
+				if (xml.ReadToFollowing ("rev")) {
+					string content = xml.ReadString ();
+					int firstCloseBrace = content.IndexOf (">");
+					int secondOpenBrace = content.IndexOf ("<", firstCloseBrace + 1);
+
+					if (firstCloseBrace == -1 || secondOpenBrace == -1 || secondOpenBrace <= firstCloseBrace)
+						return null;
+
+					content = content.Substring (firstCloseBrace + 1, secondOpenBrace - firstCloseBrace - 1);
+
+					if (content.Contains (Settings.Default.MediaWikiInstrumentalTemplate))
+						return null;
+
+					return content.Trim ();
+				}
 			}
+
+			return null;
 		}
 
-		Uri GetApiUrl (string artist, string title)
+		bool EnsureCorrectPage (string pageName, string artist, string title)
 		{
-			return new Uri (
-				new Uri (Settings.Default.MediaWikiApiBaseUrl), string.Format (
-					"api.php?action=lyrics&artist={0}&song={1}&fmt=xml&func=getSong",
-					artist, title));
+			string [] arr = pageName.Split (':');
+			if (arr.Length != 2)
+				return false;
+
+			string pageArtist = arr [0].ToLowerInvariant ();
+			string pageTitle = arr [1].ToLowerInvariant ();
+
+			artist = artist.Trim ().ToLowerInvariant ();
+			if (artist.StartsWith ("the "))
+				artist = artist.Substring (4);
+
+			title = title.Trim ().ToLowerInvariant ();
+			RemoveParens (ref title);
+
+			return pageArtist.Contains (artist) && pageTitle.Contains (title); //TODO: enhance it
+		}
+
+		string GetSearchUrl (string query)
+		{
+			query = Uri.EscapeDataString (query);
+			return string.Format (Settings.Default.MediaWikiApiSearchUrl, query);
+		}
+
+		string GetContentUrl (string title)
+		{
+			title = Uri.EscapeDataString (title);
+			return string.Format (Settings.Default.MediaWikiApiGetLyricsUrl, title);
+		}
+
+		void RemoveParens (ref string s)
+		{
+			//TODO
 		}
 	}
 }

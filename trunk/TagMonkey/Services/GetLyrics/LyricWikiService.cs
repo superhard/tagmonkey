@@ -34,7 +34,7 @@ namespace TagMonkey.Services.GetLyrics {
 					if (match.Success) {
 						string capturedLyrics = match.Groups ["LYRICS"].Value
 							.Replace ("<br />", Environment.NewLine);
-						if (!capturedLyrics.Contains (Settings.Default.MediaWikiInstrumentalCategory))
+						if (!capturedLyrics.Contains (Settings.Default.MediaWikiInstrumentalTemplate))
 							return capturedLyrics;
 					}
 

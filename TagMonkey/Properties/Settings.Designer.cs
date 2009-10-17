@@ -35,7 +35,7 @@ namespace TagMonkey.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<div class=\\\'lyricbox\\\' >(?<LYRICS>.*)<!--")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<div class=\\\'lyricbox\\\'><div class=\'rtMatcher\'>.*</div>(?<LYRICS>.*)<!--")]
         public string LyricWikiParserRegex {
             get {
                 return ((string)(this["LyricWikiParserRegex"]));
@@ -66,6 +66,30 @@ namespace TagMonkey.Properties {
             }
             set {
                 this["LastfmApiSecret"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lyrics.wikia.com/")]
+        public string MediaWikiApiBaseUrl {
+            get {
+                return ((string)(this["MediaWikiApiBaseUrl"]));
+            }
+            set {
+                this["MediaWikiApiBaseUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Category:Instrumental")]
+        public string MediaWikiInstrumentalCategory {
+            get {
+                return ((string)(this["MediaWikiInstrumentalCategory"]));
+            }
+            set {
+                this["MediaWikiInstrumentalCategory"] = value;
             }
         }
     }

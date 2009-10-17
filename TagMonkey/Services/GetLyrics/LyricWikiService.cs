@@ -9,12 +9,11 @@ using TagMonkey.Properties;
 
 namespace TagMonkey.Services.GetLyrics {
 
+	[Obsolete ("Burn in hell RIAA")]
 	class LyricWikiService : IGetLyricsService {
 
 		private static Dictionary<string, bool> artistExistsCache = new Dictionary<string, bool> ();
 		private static LyricWikiSOAP.LyricWiki wikiService = new LyricWikiSOAP.LyricWiki ();
-
-		private const string InstrumentalCategory = "Category:Instrumental";
 
 		public string GetLyrics (string artist, string title)
 		{
@@ -25,7 +24,7 @@ namespace TagMonkey.Services.GetLyrics {
 				LyricWikiSOAP.LyricsResult result = wikiService.getSong (artist, title);
 
 				using (WebClient wc = new WebClient ()) {
-					string url = result.url; // .Replace ("lyricwiki.org", "lyrics.wikia.com")
+					string url = result.url;
 					string html = wc.DownloadString (url);
 					if (string.IsNullOrEmpty (html))
 						return null;
@@ -35,7 +34,7 @@ namespace TagMonkey.Services.GetLyrics {
 					if (match.Success) {
 						string capturedLyrics = match.Groups ["LYRICS"].Value
 							.Replace ("<br />", Environment.NewLine);
-						if (!capturedLyrics.Contains (InstrumentalCategory))
+						if (!capturedLyrics.Contains (Settings.Default.MediaWikiInstrumentalCategory))
 							return capturedLyrics;
 					}
 

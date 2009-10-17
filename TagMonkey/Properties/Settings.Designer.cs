@@ -35,18 +35,6 @@ namespace TagMonkey.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<div class=\\\'lyricbox\\\'><div class=\'rtMatcher\'>.*</div>(?<LYRICS>.*)<!--")]
-        public string LyricWikiParserRegex {
-            get {
-                return ((string)(this["LyricWikiParserRegex"]));
-            }
-            set {
-                this["LyricWikiParserRegex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("a65154a4c8dadfea92f93c0a7c94492f")]
         public string LastfmApiKey {
             get {
@@ -71,25 +59,50 @@ namespace TagMonkey.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://lyrics.wikia.com/")]
-        public string MediaWikiApiBaseUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("{{Instrumental}}")]
+        public string MediaWikiInstrumentalTemplate {
             get {
-                return ((string)(this["MediaWikiApiBaseUrl"]));
+                return ((string)(this["MediaWikiInstrumentalTemplate"]));
             }
             set {
-                this["MediaWikiApiBaseUrl"] = value;
+                this["MediaWikiInstrumentalTemplate"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Category:Instrumental")]
-        public string MediaWikiInstrumentalCategory {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lyrics.wikia.com/api.php?action=query&prop=revisions&titles={0}&rvprop=tim" +
+            "estamp|user|comment|content&format=xml")]
+        public string MediaWikiApiGetLyricsUrl {
             get {
-                return ((string)(this["MediaWikiInstrumentalCategory"]));
+                return ((string)(this["MediaWikiApiGetLyricsUrl"]));
             }
             set {
-                this["MediaWikiInstrumentalCategory"] = value;
+                this["MediaWikiApiGetLyricsUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lyrics.wikia.com/api.php?action=query&list=search&format=xml&srsearch={0}")]
+        public string MediaWikiApiSearchUrl {
+            get {
+                return ((string)(this["MediaWikiApiSearchUrl"]));
+            }
+            set {
+                this["MediaWikiApiSearchUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\<lyrics\\>(?<LYRICS>.*)\\<\\/lyrics\\>")]
+        public string LyricWikiParserRegex {
+            get {
+                return ((string)(this["LyricWikiParserRegex"]));
+            }
+            set {
+                this["LyricWikiParserRegex"] = value;
             }
         }
     }

@@ -6,13 +6,19 @@
       <Value Profile="(Default)">http://lyricwiki.org/server.php</Value>
     </Setting>
     <Setting Name="LyricWikiParserRegex" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;div class=\'lyricbox\' &gt;(?&lt;LYRICS&gt;.*)&lt;!--</Value>
+      <Value Profile="(Default)">&lt;div class=\'lyricbox\'&gt;&lt;div class='rtMatcher'&gt;.*&lt;/div&gt;(?&lt;LYRICS&gt;.*)&lt;!--</Value>
     </Setting>
     <Setting Name="LastfmApiKey" Type="System.String" Scope="User">
       <Value Profile="(Default)">a65154a4c8dadfea92f93c0a7c94492f</Value>
     </Setting>
     <Setting Name="LastfmApiSecret" Type="System.String" Scope="User">
       <Value Profile="(Default)">10c98fc8a17e17085c8c24d54fa7c304</Value>
+    </Setting>
+    <Setting Name="MediaWikiApiBaseUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://lyrics.wikia.com/</Value>
+    </Setting>
+    <Setting Name="MediaWikiInstrumentalCategory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Category:Instrumental</Value>
     </Setting>
   </Settings>
 </SettingsFile>

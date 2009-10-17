@@ -20,7 +20,7 @@ namespace TagMonkey.Services {
 			implTable = new Dictionary<Type, Type> ();
 			implTable.Add (typeof (IGetArtworkService), typeof (GoogleImagesGetArtworkService));
 			implTable.Add (typeof (IGetGenresService), typeof (CommonGetGenresService));
-			implTable.Add (typeof (IGetLyricsService), typeof (LyricWikiService));
+			implTable.Add (typeof (IGetLyricsService), typeof (LyricMediaWikiService));
 			implTable.Add (typeof (IFeedbackService), typeof (TwitterFeedbackService));
 			implTable.Add (typeof (ILastfmService), (UseFakeLastfm)
 				? typeof (FakeLastfmService)

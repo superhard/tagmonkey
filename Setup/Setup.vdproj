@@ -107,6 +107,43 @@
                 }
             }
         }
+        "Package"
+        {
+        "DisplayName" = "8:Package"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:Package\\Setup.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.2.0"
+                    {
+                    "Name" = "8:.NET Framework 2.0 (x86)"
+                    "ProductCode" = "8:Microsoft.Net.Framework.2.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
+        }
         "Release"
         {
         "DisplayName" = "8:Release"
@@ -176,7 +213,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:lastfm-sharp, Version=0.2.1.2, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:lastfm-sharp, Version=0.2.1.497, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_5ABE509C8202EA2AB64CF8FFC2C65072"
@@ -341,8 +378,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TagMonkey"
-        "ProductCode" = "8:{B60421AD-C350-4862-9DDE-DFB766A69C89}"
-        "PackageCode" = "8:{30EE8F58-BB6C-4A0F-9FFE-871B3157E5EC}"
+        "ProductCode" = "8:{A31AD6DE-49DF-4401-A58D-97E2ADA0524C}"
+        "PackageCode" = "8:{19B2852E-5190-40CF-9F60-D28D7A0A3D71}"
         "UpgradeCode" = "8:{C022D32E-DFB5-4FD5-ABC2-8C92F446D80D}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -890,7 +927,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EC6B34A095EF429B9A69A2209DFD83ED"
             {
-            "SourcePath" = "8:..\\TagMonkey\\obj\\Release\\TagMonkey.exe"
+            "SourcePath" = "8:..\\TagMonkey\\obj\\Debug\\TagMonkey.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_82FFDFA4E8F9491DBF21A1860226892E"

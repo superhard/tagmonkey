@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Lastfm.Services;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 using TagMonkey.Properties;
 using TagMonkey.Services.Authentication;
 using TagMonkey.Services.Lastfm;

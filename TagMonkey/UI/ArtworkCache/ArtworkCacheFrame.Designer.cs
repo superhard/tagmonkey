@@ -32,7 +32,7 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator ();
 			this.clearCacheMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
 			this.emptyCacheLabel = new System.Windows.Forms.Label ();
-			this.coverListView = new TagMonkey.UI.ExtraControls.NoFlickeringListView ();
+			this.coverListView = new TagMonkey.UI.Extra.NoFlickeringListView ();
 			this.itemMenu.SuspendLayout ();
 			this.SuspendLayout ();
 			// 
@@ -119,7 +119,7 @@
 		#endregion
 
 		private System.Windows.Forms.ImageList coverImageList;
-		private TagMonkey.UI.ExtraControls.NoFlickeringListView coverListView;
+		private TagMonkey.UI.Extra.NoFlickeringListView coverListView;
 		private System.Windows.Forms.ContextMenuStrip itemMenu;
 		private System.Windows.Forms.ToolStripMenuItem removeArtworkMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

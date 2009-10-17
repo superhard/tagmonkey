@@ -26,8 +26,8 @@
 		private void InitializeComponent ()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox ();
-			this.scanButton = new TagMonkey.UI.CommonControls.ProcessButton ();
-			this.deviceSelector = new TagMonkey.UI.CommonControls.SourceSelectorControl ();
+			this.scanButton = new TagMonkey.UI.Common.ProcessButton ();
+			this.deviceSelector = new TagMonkey.UI.Common.SourceSelectorControl ();
 			this.trackList = new TagMonkey.UI.Lastfm.TrackQueueControl ();
 			this.groupBox1.SuspendLayout ();
 			this.SuspendLayout ();
@@ -57,7 +57,7 @@
 			this.scanButton.TabIndex = 1;
 			this.scanButton.DoWork += new System.ComponentModel.DoWorkEventHandler (this.scanButton_DoWork);
 			this.scanButton.AfterWork += new System.ComponentModel.RunWorkerCompletedEventHandler (this.scanButton_AfterWork);
-			this.scanButton.BeforeWork += new System.EventHandler<TagMonkey.UI.CommonControls.BeforeWorkEventArgs> (this.scanButton_BeforeWork);
+			this.scanButton.BeforeWork += new System.EventHandler<TagMonkey.UI.Common.BeforeWorkEventArgs> (this.scanButton_BeforeWork);
 			// 
 			// deviceSelector
 			// 
@@ -94,8 +94,8 @@
 
 		private System.Windows.Forms.GroupBox groupBox1;
 		private TrackQueueControl trackList;
-		private TagMonkey.UI.CommonControls.SourceSelectorControl deviceSelector;
-		private TagMonkey.UI.CommonControls.ProcessButton scanButton;
+		private TagMonkey.UI.Common.SourceSelectorControl deviceSelector;
+		private TagMonkey.UI.Common.ProcessButton scanButton;
 
 	}
 }

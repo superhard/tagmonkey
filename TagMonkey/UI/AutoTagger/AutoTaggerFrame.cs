@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using iTunesLib;
 
 using TagMonkey.Taggers;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.UI.AutoTagger {
 	partial class AutoTaggerFrame : UserControl, ICanProposeButtons {
@@ -50,9 +50,7 @@ namespace TagMonkey.UI.AutoTagger {
 			logger.ClearLog ();
 			logger.SetProgressPercentage (0);
 
-			IITUserPlaylist param = playlistSelector.SelectedPlaylist;
-
-			taggerWorker.RunWorkerAsync (param);
+			taggerWorker.RunWorkerAsync (playlistSelector.SelectedTracks);
 		}
 
 		void boombox_Stop (object sender, EventArgs e)
@@ -65,8 +63,9 @@ namespace TagMonkey.UI.AutoTagger {
 
 		void worker_DoWork (object sender, DoWorkEventArgs e)
 		{
-			IITUserPlaylist playlist = e.Argument as IITUserPlaylist;
-			Maek.Sure (playlist != null, "Плейлист не выбран!");
+			IITTrackCollection tracks = e.Argument as IITTrackCollection;
+			if (tracks == null)
+				return;
 
 			TaggerFactory.CurrentLogger = logger;
 			AutoTaggerOptions options = taggerOptions.Options;
@@ -83,7 +82,7 @@ namespace TagMonkey.UI.AutoTagger {
 
 				Controlz.ThreadSafe (() => taggerOptions.SetBoldFeature (kind, true));
 				try {
-					ApplyAction (playlist, check, action);
+					ApplyAction (tracks, check, action);
 				} catch (Services.ServiceUnavailableException) {
 					if (tagger.RequiresWebConnection) {
 						string msg;
@@ -136,8 +135,7 @@ namespace TagMonkey.UI.AutoTagger {
 
 		void RefreshBoomboxState ()
 		{
-			boombox.Enabled = (playlistSelector.SelectedPlaylist != null)
-				&& taggerOptions.Options.AnyChangedRequested;
+			boombox.Enabled = taggerOptions.Options.AnyChangedRequested;
 		}
 
 		ActionCheck GetActionCheck (TaggerKind taggerKind, AutoTaggerOptions options)
@@ -153,12 +151,12 @@ namespace TagMonkey.UI.AutoTagger {
 				return (t => true);
 		}
 
-		void ApplyAction (IITUserPlaylist pl, ActionCheck check, Action<IITFileOrCDTrack> action)
+		void ApplyAction (IITTrackCollection tracks, ActionCheck check, Action<IITFileOrCDTrack> action)
 		{
-			int n = ITunez.CrashSafe (() => pl.Tracks.Count);
+			int n = ITunez.CrashSafe (() => tracks.Count);
 			for (int i = 1; i <= n; i++) {
 				var track = ITunez.CrashSafe (() =>
-					(IITFileOrCDTrack) pl.Tracks.get_ItemByPlayOrder (i));
+					(IITFileOrCDTrack) tracks.get_ItemByPlayOrder (i));
 
 				while (boombox.IsPaused) {
 					Thread.Sleep (300);

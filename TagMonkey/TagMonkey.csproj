@@ -66,12 +66,22 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Package|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Package\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GAPI, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\GAPI.dll</HintPath>
     </Reference>
-    <Reference Include="lastfm-sharp, Version=0.2.1.22242, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="lastfm-sharp, Version=0.2.1.497, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\lastfm-sharp.dll</HintPath>
     </Reference>
@@ -107,6 +117,7 @@
     <Compile Include="Services\GetLyrics\LyricWikiService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\Lastfm\ILastfmService.cs" />
+    <Compile Include="Services\Lastfm\ScrobblingFailedException.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Services\ServiceUnavailableException.cs" />
     <Compile Include="Local\ArtworkCache.cs" />
@@ -121,45 +132,45 @@
     </Compile>
     <Compile Include="UI\AutoTagger\AutoTaggerOptions.cs" />
     <Compile Include="Taggers\TaggerKind.cs" />
-    <Compile Include="UI\CommonControls\ICanProposeButtons.cs" />
-    <Compile Include="UI\ExtraControls\AutoSelectTextBox.cs">
+    <Compile Include="UI\Common\ICanProposeButtons.cs" />
+    <Compile Include="UI\Extra\AutoSelectTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\ExtraControls\AutoSelectTextBox.Designer.cs">
+    <Compile Include="UI\Extra\AutoSelectTextBox.Designer.cs">
       <DependentUpon>AutoSelectTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CommonControls\BeforeWorkEventArgs.cs" />
-    <Compile Include="UI\CommonControls\IUserDetailsProvider.cs" />
-    <Compile Include="UI\CommonControls\LoginButton.cs">
+    <Compile Include="UI\Common\BeforeWorkEventArgs.cs" />
+    <Compile Include="UI\Common\IUserDetailsProvider.cs" />
+    <Compile Include="UI\Common\LoginButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\CommonControls\LoginButton.Designer.cs">
+    <Compile Include="UI\Common\LoginButton.Designer.cs">
       <DependentUpon>LoginButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CommonControls\ProcessButton.cs">
+    <Compile Include="UI\Common\ProcessButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\CommonControls\ProcessButton.Designer.cs">
+    <Compile Include="UI\Common\ProcessButton.Designer.cs">
       <DependentUpon>ProcessButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CommonControls\SourceSelectorControl.cs">
+    <Compile Include="UI\Common\SourceSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\CommonControls\SourceSelectorControl.Designer.cs">
+    <Compile Include="UI\Common\SourceSelectorControl.Designer.cs">
       <DependentUpon>SourceSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\Authentication\IAuthService.cs" />
     <Compile Include="Services\Authentication\AuthService.cs" />
-    <Compile Include="UI\ExtraControls\SelectOnCtrlATextBox.cs">
+    <Compile Include="UI\Extra\SelectOnCtrlATextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\ExtraControls\SelectOnCtrlATextBox.Designer.cs">
+    <Compile Include="UI\Extra\SelectOnCtrlATextBox.Designer.cs">
       <DependentUpon>SelectOnCtrlATextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ExtraControls\NoFlickeringListView.cs">
+    <Compile Include="UI\Extra\NoFlickeringListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\ExtraControls\NoFlickeringListView.Designer.cs">
+    <Compile Include="UI\Extra\NoFlickeringListView.Designer.cs">
       <DependentUpon>NoFlickeringListView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Feedback\FeedbackControl.cs">
@@ -175,10 +186,10 @@
     <Compile Include="UI\Lastfm\LastfmLoginControl.Designer.cs">
       <DependentUpon>LastfmLoginControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ExtraControls\AutoSizeListView.cs">
+    <Compile Include="UI\Extra\AutoSizeListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\ExtraControls\AutoSizeListView.Designer.cs">
+    <Compile Include="UI\Extra\AutoSizeListView.Designer.cs">
       <DependentUpon>AutoSizeListView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Lastfm\TrackQueueControl.cs">
@@ -198,7 +209,7 @@
     <Compile Include="Services\Lastfm\FakeLastfmService.cs" />
     <Compile Include="Services\Lastfm\LastfmService.cs" />
     <Compile Include="Services\ServiceFactory.cs" />
-    <Compile Include="UI\CommonControls\ILogger.cs" />
+    <Compile Include="UI\Common\ILogger.cs" />
     <Compile Include="Helpers\ITunesNotInstalledException.cs" />
     <Compile Include="UI\Lastfm\LastfmFrame.cs">
       <SubType>UserControl</SubType>
@@ -213,14 +224,14 @@
     <Compile Include="UI\AutoTagger\BoomboxControl.Designer.cs">
       <DependentUpon>BoomboxControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CommonControls\LogEntryKind.cs" />
-    <Compile Include="UI\CommonControls\LoggerControl.cs">
+    <Compile Include="UI\Common\LogEntryKind.cs" />
+    <Compile Include="UI\Common\LoggerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\CommonControls\LoggerControl.Designer.cs">
+    <Compile Include="UI\Common\LoggerControl.Designer.cs">
       <DependentUpon>LoggerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CommonControls\ThreadSafeLogger.cs" />
+    <Compile Include="UI\Common\ThreadSafeLogger.cs" />
     <Compile Include="Taggers\ArtworkDownloader.cs" />
     <Compile Include="Taggers\ArtworkTagger.cs" />
     <Compile Include="Taggers\LyricsTagger.cs" />
@@ -244,19 +255,19 @@
       <DependentUpon>ArtworkCacheFrame.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ExtraControls\AutoSelectTextBox.resx">
+    <EmbeddedResource Include="UI\Extra\AutoSelectTextBox.resx">
       <DependentUpon>AutoSelectTextBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CommonControls\LoginButton.resx">
+    <EmbeddedResource Include="UI\Common\LoginButton.resx">
       <DependentUpon>LoginButton.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CommonControls\ProcessButton.resx">
+    <EmbeddedResource Include="UI\Common\ProcessButton.resx">
       <DependentUpon>ProcessButton.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CommonControls\SourceSelectorControl.resx">
+    <EmbeddedResource Include="UI\Common\SourceSelectorControl.resx">
       <DependentUpon>SourceSelectorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -284,7 +295,7 @@
       <DependentUpon>BoomboxControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CommonControls\LoggerControl.resx">
+    <EmbeddedResource Include="UI\Common\LoggerControl.resx">
       <DependentUpon>LoggerControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

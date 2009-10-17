@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 using iTunesLib;
 
@@ -17,8 +17,9 @@ namespace TagMonkey.UI.AutoTagger {
 			InitializeComponent ();
 			playlistComboBox.Enabled = false; // disable till device is selected
 	
-			deviceSelector.IPodsOnly = false;
-			deviceSelector.SelectedSourceChanged += delegate {
+			sourceSelector.IPodsOnly = false;
+			sourceSelector.IncludeSelection = true;
+			sourceSelector.SelectedSourceChanged += delegate {
 				ITunez.CrashSafe (() => ScanDeviceForPlaylists ());
 			};
 
@@ -27,25 +28,6 @@ namespace TagMonkey.UI.AutoTagger {
 			};
 		}
 		
-		void FillPlaylists (IITSource device)
-		{
-			Maek.Sure (device != null, "Не было выбрано устройство.");
-			playlistComboBox.Items.Clear ();
-
-			foreach (IITUserPlaylist playlist in GetUserPlaylists (device))
-				playlistComboBox.Items.Add (playlist);
-
-			bool hasPlaylists = (playlistComboBox.Items.Count > 0);
-			playlistComboBox.Enabled = hasPlaylists;
-
-			if (hasPlaylists) {
-				if (playlistComboBox.SelectedIndex == 0)
-					RaiseSelectedPlaylistChangedEvent (); // fire it anyways
-
-				else playlistComboBox.SelectedIndex = 0;
-			}
-		}
-
 		IEnumerable<IITUserPlaylist> GetUserPlaylists (IITSource dev)
 		{
 			foreach (IITPlaylist playlist in dev.Playlists) {
@@ -86,25 +68,44 @@ namespace TagMonkey.UI.AutoTagger {
 
 		void ScanDeviceForPlaylists ()
 		{
-			IITSource device = deviceSelector.SelectedSource;
-			if (device != null)
-				FillPlaylists (device);
-			else
-				playlistComboBox.Enabled = false;
+			playlistComboBox.Items.Clear ();
+
+			if (sourceSelector.SelectedItem is IITSource) {
+				foreach (IITUserPlaylist playlist in GetUserPlaylists (sourceSelector.SelectedSource))
+					playlistComboBox.Items.Add (playlist);
+			}
+
+			bool hasPlaylists = (playlistComboBox.Items.Count > 0);
+			playlistComboBox.Enabled = hasPlaylists;
+
+			if (hasPlaylists) {
+				if (playlistComboBox.SelectedIndex == 0)
+					RaiseSelectedPlaylistChangedEvent (); // fire it anyways
+
+				else playlistComboBox.SelectedIndex = 0;
+			}
 		}
 
-		public IITUserPlaylist SelectedPlaylist {
-			get { return playlistComboBox.SelectedItem as IITUserPlaylist; }
+		public IITTrackCollection SelectedTracks {
+			get {
+				if (sourceSelector.SelectedItem is SourceSelectorControl.SelectionSourceItem)
+					return ITunez.Instance.BrowserWindow.SelectedTracks; // http://discussions.apple.com/thread.jspa?threadID=2158499
+					
+				else if (playlistComboBox.SelectedItem != null)
+					return ((IITPlaylist) playlistComboBox.SelectedItem).Tracks;
+
+				return null;
+			}
 		}
 
 		public Button GetProposedAcceptButton ()
 		{
-			return deviceSelector.GetProposedAcceptButton ();
+			return sourceSelector.GetProposedAcceptButton ();
 		}
 
 		public Button GetProposedCancelButton ()
 		{
-			return deviceSelector.GetProposedCancelButton ();
+			return sourceSelector.GetProposedCancelButton ();
 		}
 	}
 }

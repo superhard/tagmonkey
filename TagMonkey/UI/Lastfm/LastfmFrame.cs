@@ -12,7 +12,7 @@ using LastfmLib = Lastfm;
 using TagMonkey.Properties;
 using TagMonkey.Services;
 using TagMonkey.Services.Lastfm;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.UI.Lastfm {
 	partial class LastfmFrame : UserControl, ICanProposeButtons {
@@ -59,7 +59,7 @@ namespace TagMonkey.UI.Lastfm {
 		void RefreshControlsState ()
 		{
 			scrobbleButton.Enabled = lastfm.IsAuthenticated
-				&& trackQueue.HasTracksToScrobble;
+				&& !trackQueue.IsBusy && trackQueue.HasTracksToScrobble;
 
 			bool isScrobbling = scrobbleButton.IsBusy;
 			trackQueue.Enabled = !isScrobbling;
@@ -109,7 +109,7 @@ namespace TagMonkey.UI.Lastfm {
 					while (ITunez.CrashSafe (() => tr.PlayedCount > 0)) {
 						try {
 							ITunez.CrashSafe (() => lastfm.Scrobble (tr, addSeconds));
-						} catch (LastfmLib.Scrobbling.ScrobblingException ex) {
+						} catch (ScrobblingFailedException ex) {
 							logger.AddLogEntry (loggerText, LogEntryKind.Error, ex.Message);
 							continue; //TODO: break if too many failures
 						}

@@ -26,11 +26,11 @@
 		private void InitializeComponent ()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox ();
-			this.loginButton = new TagMonkey.UI.CommonControls.LoginButton ();
+			this.loginButton = new TagMonkey.UI.Common.LoginButton ();
 			this.statusLabel = new System.Windows.Forms.Label ();
-			this.passwordTextBox = new TagMonkey.UI.ExtraControls.AutoSelectTextBox ();
+			this.passwordTextBox = new TagMonkey.UI.Extra.AutoSelectTextBox ();
 			this.label2 = new System.Windows.Forms.Label ();
-			this.loginTextBox = new TagMonkey.UI.ExtraControls.AutoSelectTextBox ();
+			this.loginTextBox = new TagMonkey.UI.Extra.AutoSelectTextBox ();
 			this.label1 = new System.Windows.Forms.Label ();
 			this.groupBox1.SuspendLayout ();
 			this.SuspendLayout ();
@@ -127,11 +127,11 @@
 		#endregion
 
 		private System.Windows.Forms.GroupBox groupBox1;
-		private TagMonkey.UI.ExtraControls.AutoSelectTextBox passwordTextBox;
+		private TagMonkey.UI.Extra.AutoSelectTextBox passwordTextBox;
 		private System.Windows.Forms.Label label2;
-		private TagMonkey.UI.ExtraControls.AutoSelectTextBox loginTextBox;
+		private TagMonkey.UI.Extra.AutoSelectTextBox loginTextBox;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label statusLabel;
-		private TagMonkey.UI.CommonControls.LoginButton loginButton;
+		private TagMonkey.UI.Common.LoginButton loginButton;
 	}
 }

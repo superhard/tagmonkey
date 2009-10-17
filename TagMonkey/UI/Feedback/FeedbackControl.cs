@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 using TagMonkey.Services;
 using TagMonkey.Services.Feedback;
-using TagMonkey.UI.CommonControls;
+using TagMonkey.UI.Common;
 
 namespace TagMonkey.UI.Feedback {
 	public partial class FeedbackControl : UserControl, ICanProposeButtons {

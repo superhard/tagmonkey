@@ -25,7 +25,7 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
-			this.tracksListView = new TagMonkey.UI.ExtraControls.AutoSizeListView ();
+			this.tracksListView = new TagMonkey.UI.Extra.AutoSizeListView ();
 			this.artistColumn = new System.Windows.Forms.ColumnHeader ();
 			this.songColumn = new System.Windows.Forms.ColumnHeader ();
 			this.playCountColumn = new System.Windows.Forms.ColumnHeader ();
@@ -83,7 +83,7 @@
 
 		#endregion
 
-		private TagMonkey.UI.ExtraControls.AutoSizeListView tracksListView;
+		private TagMonkey.UI.Extra.AutoSizeListView tracksListView;
 		private System.Windows.Forms.ColumnHeader artistColumn;
 		private System.Windows.Forms.ColumnHeader songColumn;
 		private System.Windows.Forms.ColumnHeader playCountColumn;

@@ -64,12 +64,15 @@ namespace TagMonkey.Services.Lastfm {
 
 			try {
 				connection.Scrobble (e);
-			} catch (ScrobblingException sex) {
-				string msg = string.Format ("Ошибка при скробблинге: {0}", sex.Message);
-				throw new ServiceException (msg, sex);
 			} catch (WebException wex) {
 				throw new ServiceUnavailableException (wex);
-			}
+			} catch (ServiceException sex) {
+				throw new ScrobblingFailedException ("Непредвиденная ошибка Last.fm: " + sex.Message, sex);
+			} catch (ScrobblingException sex) {
+				throw new ScrobblingFailedException ("Ошибка при скробблинге: " + sex.Message, sex);
+			} catch (Exception ex) {
+				throw new ScrobblingFailedException ("Непредвиденная ошибка: " + ex.Message, ex);
+			} 
 		}
 
 		public override bool IsAuthenticated

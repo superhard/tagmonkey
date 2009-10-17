@@ -27,7 +27,7 @@
 		{
 			this.sendIdeaButton = new System.Windows.Forms.Button ();
 			this.hideButton = new System.Windows.Forms.Button ();
-			this.ideaTextBox = new TagMonkey.UI.ExtraControls.SelectOnCtrlATextBox ();
+			this.ideaTextBox = new TagMonkey.UI.Extra.SelectOnCtrlATextBox ();
 			this.SuspendLayout ();
 			// 
 			// sendIdeaButton
@@ -90,7 +90,7 @@
 
 		#endregion
 
-		private TagMonkey.UI.ExtraControls.SelectOnCtrlATextBox ideaTextBox;
+		private TagMonkey.UI.Extra.SelectOnCtrlATextBox ideaTextBox;
 		private System.Windows.Forms.Button sendIdeaButton;
 		private System.Windows.Forms.Button hideButton;
 	}

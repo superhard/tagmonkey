@@ -28,7 +28,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager (typeof (AutoTaggerFrame));
 			this.taggerWorker = new System.ComponentModel.BackgroundWorker ();
 			this.clearLogButton = new System.Windows.Forms.Button ();
-			this.unsafeLogger = new TagMonkey.UI.CommonControls.LoggerControl ();
+			this.unsafeLogger = new TagMonkey.UI.Common.LoggerControl ();
 			this.boombox = new TagMonkey.UI.AutoTagger.BoomboxControl ();
 			this.taggerOptions = new TagMonkey.UI.AutoTagger.AutoTaggerOptionsControl ();
 			this.playlistSelector = new TagMonkey.UI.AutoTagger.PlaylistSelectorControl ();
@@ -120,6 +120,6 @@
 		private AutoTaggerOptionsControl taggerOptions;
 		private PlaylistSelectorControl playlistSelector;
 		private System.Windows.Forms.Button clearLogButton;
-		private TagMonkey.UI.CommonControls.LoggerControl unsafeLogger;
+		private TagMonkey.UI.Common.LoggerControl unsafeLogger;
 	}
 }

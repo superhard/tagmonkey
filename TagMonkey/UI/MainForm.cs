@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -29,6 +30,11 @@ namespace TagMonkey.UI {
 
 		void MainForm_Load (object sender, EventArgs e)
 		{
+			Trace.WriteLine ("");
+			Trace.WriteLine ("");
+			Trace.WriteLine (string.Format ("Application launched {0}", DateTime.Now));
+			Trace.Indent ();
+
 			// disable all controls till itunes is launched
 			Controlz.Disable (this);
 			

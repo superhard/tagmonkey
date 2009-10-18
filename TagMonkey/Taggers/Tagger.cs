@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
 using iTunesLib;
+using TagMonkey.Local;
 using TagMonkey.Services;
 using TagMonkey.UI.Common;
 
@@ -49,8 +51,9 @@ namespace TagMonkey.Taggers {
 				throw;
 			}  catch (ServiceException sex) {
 				Log (FriendlyName, LogEntryKind.Error, sex.Message);
-			} catch (COMException) {
+			} catch (COMException cex) {
 				Log (LogEntryKind.Error, "Не удалось осуществить запись в файл");
+				Trace.WriteLine ("Error writing file: " + cex.ToString ());
 			} finally {
 				CurrentTrack = null;
 			}

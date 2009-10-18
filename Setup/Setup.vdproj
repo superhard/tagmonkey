@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_1085DEB2C63C48348C3E0B3D247AD252"
+        "OwnerKey" = "8:_EC6B34A095EF429B9A69A2209DFD83ED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5ABE509C8202EA2AB64CF8FFC2C65072"
         "OwnerKey" = "8:_EC6B34A095EF429B9A69A2209DFD83ED"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,14 +33,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_84113C5D09EC9D5DA21810B42479EC20"
-        "OwnerKey" = "8:_EC6B34A095EF429B9A69A2209DFD83ED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CD8C989A98D0C8D83E0E1C8B0E222F7C"
-        "OwnerKey" = "8:_84113C5D09EC9D5DA21810B42479EC20"
+        "OwnerKey" = "8:_1085DEB2C63C48348C3E0B3D247AD252"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,25 +46,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6316F7CB8E3A02C28F367858C40308C8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_84113C5D09EC9D5DA21810B42479EC20"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EC6B34A095EF429B9A69A2209DFD83ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1085DEB2C63C48348C3E0B3D247AD252"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5ABE509C8202EA2AB64CF8FFC2C65072"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6316F7CB8E3A02C28F367858C40308C8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -209,6 +209,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1085DEB2C63C48348C3E0B3D247AD252"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.iTunesLib, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1085DEB2C63C48348C3E0B3D247AD252"
+                    {
+                    "Name" = "8:Interop.iTunesLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Interop.iTunesLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82FFDFA4E8F9491DBF21A1860226892E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5ABE509C8202EA2AB64CF8FFC2C65072"
             {
             "AssemblyRegister" = "3:1"
@@ -254,37 +285,6 @@
                     }
                 }
             "SourcePath" = "8:GAPI.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_82FFDFA4E8F9491DBF21A1860226892E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_84113C5D09EC9D5DA21810B42479EC20"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.iTunesLib, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_84113C5D09EC9D5DA21810B42479EC20"
-                    {
-                    "Name" = "8:Interop.iTunesLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Interop.iTunesLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_82FFDFA4E8F9491DBF21A1860226892E"
@@ -378,14 +378,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TagMonkey"
-        "ProductCode" = "8:{A31AD6DE-49DF-4401-A58D-97E2ADA0524C}"
-        "PackageCode" = "8:{19B2852E-5190-40CF-9F60-D28D7A0A3D71}"
+        "ProductCode" = "8:{E90F6101-78FD-422D-AE4A-2753E97B7B74}"
+        "PackageCode" = "8:{846C1F58-360E-4A59-84CB-3585A29D8F18}"
         "UpgradeCode" = "8:{C022D32E-DFB5-4FD5-ABC2-8C92F446D80D}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.7"
+        "ProductVersion" = "8:0.0.8"
         "Manufacturer" = "8:Amsterdam Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://vkontakte.ru/id16921756"
@@ -927,7 +927,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EC6B34A095EF429B9A69A2209DFD83ED"
             {
-            "SourcePath" = "8:..\\TagMonkey\\obj\\Debug\\TagMonkey.exe"
+            "SourcePath" = "8:..\\TagMonkey\\obj\\Package\\TagMonkey.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_82FFDFA4E8F9491DBF21A1860226892E"

@@ -53,6 +53,7 @@ namespace TagMonkey.Services.GetLyrics {
 					if (content.Contains (Settings.Default.MediaWikiInstrumentalTemplate))
 						return null;
 
+					content = content.Replace ('’', '\'');
 					return content.Trim ();
 				}
 			}

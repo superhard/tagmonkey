@@ -89,10 +89,12 @@ namespace TagMonkey.UI.AutoTagger {
 		public IITTrackCollection SelectedTracks {
 			get {
 				if (sourceSelector.SelectedItem is SourceSelectorControl.SelectionSourceItem)
-					return ITunez.Instance.BrowserWindow.SelectedTracks; // http://discussions.apple.com/thread.jspa?threadID=2158499
+					return ITunez.CrashSafe (() =>
+						ITunez.Instance.BrowserWindow.SelectedTracks); // http://discussions.apple.com/thread.jspa?threadID=2158499
 					
 				else if (playlistComboBox.SelectedItem != null)
-					return ((IITPlaylist) playlistComboBox.SelectedItem).Tracks;
+					return ITunez.CrashSafe (() =>
+						((IITPlaylist) playlistComboBox.SelectedItem).Tracks);
 
 				return null;
 			}
